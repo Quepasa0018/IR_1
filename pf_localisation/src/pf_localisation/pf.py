@@ -25,7 +25,10 @@ class PFLocaliser(PFLocaliserBase):
             pose.position.x = x
             pose.position.y = y
             rotation = random.gauss(0, math.pi)
-            quat_msg = Quaternion(0, 0, 0, 1)  # Fixed quaternion initialization
+            quat_tf = [0, 1, 0, 0]
+            quat_tf[0] = x
+            quat_tf[1] = y
+            quat_msg = Quaternion(quat_tf[0], quat_tf[1], quat_tf[2], quat_tf[3])
             myRotateQuaternion = rotateQuaternion(quat_msg, rotation)
             pose.orientation = myRotateQuaternion
             poseArray.poses.append(pose)
